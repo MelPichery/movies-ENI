@@ -1,0 +1,35 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+    <div><h1>{{ movie.title }}</h1><b>Note: {{ movie.rating }} Votes: {{ movie.votes }}</b></div>
+
+    <img src="{{ asset('posters/'~ movie.imdbId ~ '.jpg')}}">
+<div>
+    <i>Année: {{ movie.year }}</i><br>
+    <i>Casting: {{ movie.cast }}</i><br>
+    <i>Director: {{ movie.directors }}</i><br>
+    <i>Durée: {{ movie.runtime }}</i>
+</div>
+    <br>
+    <p>{{ movie.plot }}</p><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ movie.trailerId }}" frameborder="0" allowfullscreen></iframe>
+
+    <h3>Donner votre avis</h3>
+
+    {{ form(reviewForm,{'attr':{'novalidate':'novalidate'}}) }}
+
+    <div class="container">
+        <table class="table">
+            {% for review in movie.reviews %}
+                <tr>
+                    <td>Titre de la critique: {{ review.title }}</td>
+                    <td>Critique: {{ review.critique }}  </td>
+                    <td>Note: {{ review.note }}</td>
+                    <td>Auteur: {{ review.username }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}

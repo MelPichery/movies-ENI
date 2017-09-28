@@ -1,0 +1,18 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+
+{% block content %}
+    <h3>
+    <a href="{{ path('admin_create')}}" class="btn btn-info btn-lg">Ajouter un film !</a>
+    </h3>
+    <table class="table">
+    {% for movie in movies %}
+        <tr>
+            <td>{{ movie.id }}</td>
+            <td>{{ movie.title }}</td>
+            <td><a href="{{ path('admin_edit',{'id': movie.id}) }}" class="btn btn-warning">Modifier</a></td>
+            <td><a href="{{ path('admin_delete',{'id': movie.id}) }}" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

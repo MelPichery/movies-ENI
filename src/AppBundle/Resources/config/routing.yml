@@ -1,0 +1,45 @@
+app_homepage:
+    path:     /{page}
+    defaults: { _controller: AppBundle:Movie:list, page: 1 }
+    requirements:
+         page: '\d+'
+
+movie_detail:
+    path:     /movies/{id}/details/
+    defaults: { _controller: AppBundle:Movie:detail }
+    requirements:
+         id: '\d+'
+
+admin_list:
+    path:     /movies/admin/list/
+    defaults: { _controller: AppBundle:AdminMovie:list }
+
+admin_create:
+    path:     /movies/admin/ajout/
+    defaults: { _controller: AppBundle:AdminMovie:create }
+
+admin_edit:
+    path:     /movies/admin/modification/{id}/
+    defaults: { _controller: AppBundle:AdminMovie:edit }
+    requirements:
+         id: '\d+'
+
+admin_delete:
+    path:     /movies/admin/suppression/{id}/
+    defaults: { _controller: AppBundle:AdminMovie:delete }
+    requirements:
+         id: '\d+'
+
+user_register:
+    path:   /user/inscription/
+    defaults: { _controller: AppBundle:User:register }
+
+#le nom de route doit être le même que dans le security yml
+login:
+    path:   /connexion/
+    defaults: { _controller: AppBundle:User:login }
+
+#c'est symfony qui se charge de la déconnexion, donc on indique pas de méthode
+logout:
+    path:   /deconnexion/
+

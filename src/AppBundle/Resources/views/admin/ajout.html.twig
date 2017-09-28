@@ -1,0 +1,9 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+
+{% block content %}
+    <h1>Ajout de film</h1>
+
+    {{ form(movieForm,{'attr':{'novalidate':'novalidate'}}) }}
+
+{% endblock %}

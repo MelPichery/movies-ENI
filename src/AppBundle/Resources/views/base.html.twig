@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang=fr>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('images/star.png') }}">
+    <title>{% block title %} Movies !{% endblock %}</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>
+        <a href="{{path ('app_homepage') }}" title="Accueil du site">
+            <img src="{{ asset('images/cine.png') }}" alt="Logo">
+        </a> Movies !
+        </h1>
+        <nav>
+            <ul class="nav nav-pills">
+
+                {% if app.user %}
+                <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin_list') }}">Administration</a></li>
+                     {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('user_register') }}">Inscription</a></li>
+                        <li><a href="{{ path('login') }}">Connexion</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}</div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>
